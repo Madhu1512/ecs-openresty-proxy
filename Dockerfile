@@ -21,4 +21,5 @@ COPY nginx/default.conf /usr/local/openresty/nginx/conf/sites/default.conf
 COPY bootstrap.sh /usr/local/openresty/bootstrap.sh
 COPY supervisord.conf /etc/supervisor/
 COPY nginx.tmpl nginx.tmpl
+RUN chmod +x /usr/local/openresty/bootstrap.sh
 ENTRYPOINT ["supervisord", "--configuration", "/etc/supervisor/supervisord.conf"]
