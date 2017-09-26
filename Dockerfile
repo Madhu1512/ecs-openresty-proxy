@@ -16,10 +16,9 @@ RUN apk update && \
     cp ecs-gen-linux-amd64 /usr/local/bin/ecs-gen && \
     rm -rf ecs-gen-linux-amd64* 
 
-COPY nginx.conf /usr/local/openresty/nginx/conf/nginx.conf
-COPY nginx.vh.default.conf /usr/local/openresty/nginx/conf/sites/default.conf
+COPY nginx/nginx.conf /usr/local/openresty/nginx/conf/nginx.conf
+COPY nginx/default.conf /usr/local/openresty/nginx/conf/sites/default.conf
 COPY bootstrap.sh /usr/local/openresty/bootstrap.sh
 COPY supervisord.conf /etc/supervisor/
 COPY nginx.tmpl nginx.tmpl
-RUN chmod +x /usr/local/openresty/bootstrap.sh
 ENTRYPOINT ["supervisord", "--configuration", "/etc/supervisor/supervisord.conf"]
